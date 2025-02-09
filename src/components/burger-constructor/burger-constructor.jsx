@@ -1,5 +1,3 @@
-import Modal from "../modal/modal";
-import OrderDetails from "../order-details/order-details";
 import styles from "./burger-constructor.module.css";
 import {
   CurrencyIcon,
@@ -12,31 +10,31 @@ import { useDrop } from "react-dnd";
 import BurgerConstructorElement from "../burger-constructor-element/burger-constructor-element";
 import {
   ADD_BURGER_BUN,
-  addIngridient,
+  addIngredient,
   DELETE_BURGER_INGREDIENT,
   RESET_BURGER_CONSTRUCTOR,
   SWAP_BURGER_INGREDIENT,
 } from "../../services/actions/burger-constructor";
 import cloudIcon from "../../images/cloud.svg";
 import { postOrder } from "../../services/actions/order-detail";
+import { getCookie } from "../../utils/getCookieValue";
+import { useNavigate } from "react-router-dom";
 
 export default function BurgerConstructor() {
-  // Hooks
-  const { isModalOpen, openModal, closeModal } = useModal();
+  const { openModal } = useModal();
+  const token = getCookie().refreshToken;
+  const navigate = useNavigate();
 
-  // Redux
   const dispatch = useDispatch();
   const ingredients = useSelector((state) => state.burger_constructor.items);
   const bun = useSelector((state) => state.burger_constructor.bun);
 
-  // Consts
   const sum =
     ingredients.reduce((sum, { price }) => sum + price, 0) +
     bun.reduce((sum, { price }) => sum + price * 2, 0);
 
   const bunItem = bun[0];
 
-  // Functions
   const collectArrayId = () => {
     const arr = [
       ...ingredients.map((item) => item._id),
@@ -86,7 +84,7 @@ export default function BurgerConstructor() {
   };
 
   const handleDrop = (item) => {
-    dispatch(addIngridient(item));
+    dispatch(addIngredient(item));
   };
 
   // DND (drag and drop)
@@ -110,15 +108,8 @@ export default function BurgerConstructor() {
     },
   });
 
-  // JSX
   return (
     <section className={styles.burger_constructor}>
-      {isModalOpen && (
-        <Modal handleClose={closeModal}>
-          <OrderDetails />
-        </Modal>
-      )}
-
       {bun.length === 0 ? (
         <div ref={dropTargetBunsTop} className={styles.constructor_bun_wrapper}>
           <div className={styles.constructor_wrapper_bun_hover}>
@@ -202,9 +193,13 @@ export default function BurgerConstructor() {
           <CurrencyIcon type="primary" />
         </div>
         <Button
-          onClick={(e) => {
-            handlePostOrder();
-            openModal(e);
+          onClick={() => {
+            if (token) {
+              handlePostOrder();
+              openModal({}, "postorder");
+            } else {
+              navigate("/login");
+            }
           }}
           htmlType="button"
           type="primary"

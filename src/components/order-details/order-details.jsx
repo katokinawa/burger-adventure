@@ -5,11 +5,9 @@ import { useSelector } from "react-redux";
 import loading from "../../images/loading.gif";
 
 export default function OrderDetails() {
-  // Redux
   const orderData = useSelector((state) => state.order.data);
   const orderRequest = useSelector((state) => state.order.orderRequest);
 
-  // JSX
   return (
     <div className={styles.order_details_wrapper}>
       {orderRequest ? (
@@ -21,7 +19,7 @@ export default function OrderDetails() {
       ) : (
         <>
           <p className={styles.heading + " text text_type_digits-large mb-8"}>
-            {orderData?.order?.number}
+            {orderData?.order?.number || "—"}
           </p>
           <p className="text text_type_main-default mb-15">
             идентификатор заказа

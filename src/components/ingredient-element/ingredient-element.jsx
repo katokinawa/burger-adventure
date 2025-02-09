@@ -8,11 +8,9 @@ import { IngredientType } from "../../utils/types";
 import { useDrag } from "react-dnd";
 import { useSelector } from "react-redux";
 export default function IngredientElement({ item, openModal, type }) {
-  // Redux
   const ingredients = useSelector((state) => state.burger_constructor.items);
   const counterBuns = useSelector((state) => state.burger_constructor.bun);
 
-  // Consts
   const countIngredient = ingredients.filter((e) => e._id === item._id);
   const countBuns = counterBuns.filter((e) => e._id === item._id);
 
@@ -22,13 +20,13 @@ export default function IngredientElement({ item, openModal, type }) {
     item: item,
   });
 
-  // JSX
   return (
     <article
       onClick={() => {
-        openModal(item);
+        openModal(item, "ingredient");
       }}
       className={styles.article}
+      name={"ingredients"}
       ref={dragTarget}
     >
       {countIngredient.length !== 0 && (

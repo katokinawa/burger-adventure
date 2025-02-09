@@ -1,31 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./burger-ingredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import Modal from "../modal/modal";
-import IngredientDetails from "../ingredient-details/ingredient-details";
 import { useModal } from "../../hooks/useModal";
 import { useDispatch, useSelector } from "react-redux";
 import { getIngredients } from "../../services/actions/ingredients";
 import IngredientElement from "../ingredient-element/ingredient-element";
 
 export default function BurgerIngredients() {
-  // States
   const [current, setCurrent] = useState("bun");
 
-  // Hooks
-  const { isModalOpen, closeModal, openModal } = useModal();
+  const { openModal } = useModal();
 
-  // Refs
   const containerRef = useRef(null);
   const bunRef = useRef(null);
   const sauceRef = useRef(null);
   const mainRef = useRef(null);
 
-  // Redux
   const dispatch = useDispatch();
   const ingredients = useSelector((state) => state.ingredients.items);
 
-  // UseEffects
   useEffect(() => {
     dispatch(getIngredients());
   }, [dispatch]);
@@ -44,7 +37,6 @@ export default function BurgerIngredients() {
     };
   }, []);
 
-  // Functions
   const handleScroll = () => {
     if (
       !containerRef.current ||
@@ -57,8 +49,11 @@ export default function BurgerIngredients() {
     const containerTop = containerRef.current.getBoundingClientRect().top;
 
     const bunTop = bunRef.current.getBoundingClientRect().top - containerTop;
+    // Увеличиваем на 30 пикселей, потому что блок с <p></p>
+    // при переходе по якорной ссылке по табу вычисляется как 0,
+    // и в табе активным становится следующий ингредиент
     const sauceTop =
-      sauceRef.current.getBoundingClientRect().top - containerTop;
+      sauceRef.current.getBoundingClientRect().top - containerTop + 30;
     const mainTop = mainRef.current.getBoundingClientRect().top - containerTop;
 
     const tabs = [
@@ -80,14 +75,8 @@ export default function BurgerIngredients() {
     setCurrent(currentTab.name);
   };
 
-  // JSX
   return (
     <section className={styles.burger_ingredients}>
-      {isModalOpen && (
-        <Modal handleClose={closeModal}>
-          <IngredientDetails />
-        </Modal>
-      )}
       <p className="text text_type_main-large mb-5">Соберите бургер</p>
       <div className={styles.tabs}>
         <a href="#bun">

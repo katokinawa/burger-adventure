@@ -1,0 +1,5 @@
+.error_wrapper {
+  display: flex;
+  justify-content: center;
+  composes: mt-20 from global;
+}

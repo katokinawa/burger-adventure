@@ -1,0 +1,24 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  margin-top: 180px;
+}
+
+.register_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.register_footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  composes: mt-20 from global;
+}
+
+.register_footer_span {
+  color: #4c4cff;
+}

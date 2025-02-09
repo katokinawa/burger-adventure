@@ -1,11 +1,22 @@
+import { useParams } from "react-router-dom";
 import styles from "./ingredient-details.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getIngredients } from "../../services/actions/ingredients";
 
 export default function IngredientDetails() {
-  // Redux
-  const ingredient = useSelector((state) => state.ingredient.data);
+  const dispatch = useDispatch();
+  const { ingredientId } = useParams();
+  const ingredients = useSelector((state) => state.ingredients.items);
 
-  // JSX
+  const ingredient = ingredients.find((item) => {
+    return item._id === ingredientId;
+  });
+
+  useEffect(() => {
+    dispatch(getIngredients());
+  }, [dispatch]);
+
   return (
     <div className={styles.ingredients_modal_wrapper}>
       <p className={styles.heading + " text text_type_main-large"}>
@@ -14,17 +25,17 @@ export default function IngredientDetails() {
       <div className={styles.ingredients_details_wrapper}>
         <img
           className="mb-4"
-          src={ingredient.image_large}
-          alt={ingredient.name}
+          src={ingredient?.image_large}
+          alt={ingredient?.name}
         />
-        <p className="text text_type_main-medium mb-8">{ingredient.name}</p>
+        <p className="text text_type_main-medium mb-8">{ingredient?.name}</p>
         <ul className={styles.energy_value_list}>
           <li className={styles.energy_value_item}>
             <p className="text text_type_main-default text_color_inactive">
               Калории, ккал
             </p>
             <p className="text text_type_digits-default text_color_inactive">
-              {ingredient.calories}
+              {ingredient?.calories}
             </p>
             <p className="text text_type_main-default text_color_inactive"></p>
           </li>
@@ -33,7 +44,7 @@ export default function IngredientDetails() {
               Белки, г
             </p>
             <p className="text text_type_digits-default text_color_inactive">
-              {ingredient.proteins}
+              {ingredient?.proteins}
             </p>
             <p className="text text_type_main-default text_color_inactive"></p>
           </li>
@@ -42,7 +53,7 @@ export default function IngredientDetails() {
               Жиры, г
             </p>
             <p className="text text_type_digits-default text_color_inactive">
-              {ingredient.fat}
+              {ingredient?.fat}
             </p>
             <p className="text text_type_main-default text_color_inactive"></p>
           </li>
@@ -51,7 +62,7 @@ export default function IngredientDetails() {
               Углеводы, г
             </p>
             <p className="text text_type_digits-default text_color_inactive">
-              {ingredient.carbohydrates}
+              {ingredient?.carbohydrates}
             </p>
             <p className="text text_type_main-default text_color_inactive"></p>
           </li>

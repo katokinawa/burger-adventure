@@ -1,0 +1,48 @@
+.profile {
+  display: flex;
+  margin: 120px 0 0 0;
+  gap: 60px;
+}
+
+.profile_navlinks {
+  width: 320px;
+}
+
+.profile_inputs_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 480px;
+}
+
+.loading_gif {
+  width: 100px;
+  height: 100px;
+}
+
+.profile_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  width: 320px;
+  height: 64px;
+}
+
+.link_disabled {
+  color: grey;
+}
+
+.button_form {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.button_form_show {
+  opacity: 1;
+}

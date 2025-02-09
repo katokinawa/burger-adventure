@@ -1,4 +1,4 @@
-// import { useState } from 'react'
+import { NavLink } from "react-router-dom";
 import styles from "./app-header.module.css";
 import {
   BurgerIcon,
@@ -7,25 +7,41 @@ import {
   Logo,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
-export default function AppHeader() {
-  // JSX
+export function AppHeader() {
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
         <ul className={styles.nav_left}>
           <li>
-            <button className={styles.button}>
-              <BurgerIcon type="primary" />
-              <p className="text text_type_main-default">Конструктор</p>
-            </button>
+            <NavLink to={"/"} end>
+              {({ isActive }) => (
+                <button className={styles.button}>
+                  <BurgerIcon type={!isActive ? "secondary" : "primary"} />
+                  <p
+                    className={`"text text_type_main-default "
+                      ${!isActive && "text_color_inactive"}`}
+                  >
+                    Конструктор
+                  </p>
+                </button>
+              )}
+            </NavLink>
           </li>
           <li>
-            <button className={styles.button}>
-              <ListIcon type="secondary" />
-              <p className="text text_type_main-default text_color_inactive">
-                Лента заказов
-              </p>
-            </button>
+            <NavLink to={"/profile/orders"} end>
+              {({ isActive }) => (
+                <button className={styles.button}>
+                  <ListIcon type={!isActive ? "secondary" : "primary"} />
+                  <p
+                    className={`"text text_type_main-default " ${
+                      !isActive && "text_color_inactive"
+                    }`}
+                  >
+                    Лента заказов
+                  </p>
+                </button>
+              )}
+            </NavLink>
           </li>
         </ul>
         <div className={styles.nav_center}>
@@ -33,12 +49,20 @@ export default function AppHeader() {
         </div>
         <ul className={styles.nav_right}>
           <li>
-            <button className={styles.button}>
-              <ProfileIcon type="secondary" />
-              <p className="text text_type_main-default text_color_inactive">
-                Личный кабинет
-              </p>
-            </button>
+            <NavLink to={"/profile"} end>
+              {({ isActive }) => (
+                <button className={styles.button}>
+                  <ProfileIcon type={!isActive ? "secondary" : "primary"} />
+                  <p
+                    className={`"text text_type_main-default " ${
+                      !isActive && "text_color_inactive"
+                    }`}
+                  >
+                    Личный кабинет
+                  </p>
+                </button>
+              )}
+            </NavLink>
           </li>
         </ul>
       </nav>

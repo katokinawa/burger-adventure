@@ -5,6 +5,8 @@ import {
 
 const initialState = {
   data: {},
+  isModalOpen: false,
+  ingredientType: "",
 };
 
 export const ingredientDetail = (state = initialState, action) => {
@@ -13,12 +15,16 @@ export const ingredientDetail = (state = initialState, action) => {
       return {
         ...state,
         data: action.item,
+        isModalOpen: true,
+        ingredientType: action.ingredientType,
       };
     }
     case DELETE_SELECTED_INGREDIENT: {
       return {
         ...state,
-        data: [],
+        data: {},
+        isModalOpen: false,
+        ingredientType: null,
       };
     }
     default: {

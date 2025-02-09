@@ -41,8 +41,8 @@ export const burgerConstructor = (state = initialState, action) => {
       return {
         ...state,
         items: [],
-        bun: []
-      }
+        bun: [],
+      };
     }
     default: {
       return state;

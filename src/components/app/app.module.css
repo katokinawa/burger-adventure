@@ -12,6 +12,11 @@
   }
 }
 
+html {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
 /* Пришлось перенести из index.module.css, иначе ломался прод при npm run preview */
 button {
   padding: 0;

@@ -28,7 +28,6 @@ export default function BurgerConstructorElement({
     },
   });
 
-  // JSX
   return (
     <article ref={dropItemTarget}>
       <div ref={dragItemTarget} className={styles.constructor_item_wrapper}>
