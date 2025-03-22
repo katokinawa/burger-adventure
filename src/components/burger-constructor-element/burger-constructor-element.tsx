@@ -33,7 +33,7 @@ export default function BurgerConstructorElement({
   });
 
   return (
-    <article ref={dropItemTarget}>
+    <article ref={dropItemTarget} data-testid="constructor-ingredient">
       <div ref={dragItemTarget} className={styles.constructor_item_wrapper}>
         <DragIcon type="primary" />
         <ConstructorElement

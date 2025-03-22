@@ -119,7 +119,11 @@ export default function BurgerConstructor() {
   return (
     <section className={styles.burger_constructor}>
       {(bun && !bun.length) || !bun ? (
-        <div ref={dropTargetBunsTop} className={styles.constructor_bun_wrapper}>
+        <div
+          ref={dropTargetBunsTop}
+          className={styles.constructor_bun_wrapper}
+          data-testid="сonstructor-ingredients-block-bun"
+        >
           <div className={styles.constructor_wrapper_bun_hover}>
             <div className={styles.dnd_bun_wrapper}>
               <p className="text text_type_main-default">
@@ -129,7 +133,11 @@ export default function BurgerConstructor() {
           </div>
         </div>
       ) : (
-        <div ref={dropTargetBunsTop} className={styles.constructor_bun_wrapper}>
+        <div
+          ref={dropTargetBunsTop}
+          className={styles.constructor_bun_wrapper}
+          data-testid="bun-constructor-element"
+        >
           <ConstructorElement
             type="top"
             isLocked={true}
@@ -140,7 +148,11 @@ export default function BurgerConstructor() {
         </div>
       )}
       {!ingredients.length ? (
-        <div ref={dropTarget} className={styles.constructor_wrapper_hover}>
+        <div
+          ref={dropTarget}
+          className={styles.constructor_wrapper_hover}
+          data-testid="сonstructor-ingredients-block-ingredient"
+        >
           <div className={styles.dnd_wrapper}>
             <img src={cloudIcon} alt="Облако с иконкой загрузки" />
             <p className="text text_type_main-medium mb-6">
@@ -150,7 +162,10 @@ export default function BurgerConstructor() {
         </div>
       ) : (
         <div ref={dropTarget} className={styles.constructor_wrapper}>
-          <div className={styles.constructor_list_wrapper}>
+          <div
+            className={styles.constructor_list_wrapper}
+            data-testid="ingredient-constructor-element"
+          >
             {ingredients.map(
               (item: IItem, index: number) =>
                 item.type !== "bun" && (
@@ -184,6 +199,7 @@ export default function BurgerConstructor() {
         <div
           ref={dropTargetBunsBottom}
           className={styles.constructor_bun_wrapper}
+          data-testid="bun-constructor-element"
         >
           <ConstructorElement
             type="bottom"
@@ -200,22 +216,23 @@ export default function BurgerConstructor() {
           <p className="text text_type_main-large">{sum}</p>
           <CurrencyIcon type="primary" />
         </div>
-        <Button
-          onClick={() => {
-            if (token) {
-              handlePostOrder();
-              openModal({}, "postorder");
-            } else {
-              navigate("/login");
-            }
-          }}
-          htmlType="button"
-          type="primary"
-          size="large"
-          disabled={bun && (!ingredients.length || !bun.length)}
-        >
-          Оформить заказ
-        </Button>
+          <Button
+            onClick={() => {
+              if (token) {
+                handlePostOrder();
+                openModal({}, "postorder");
+              } else {
+                navigate("/login");
+              }
+            }}
+            htmlType="button"
+            type="primary"
+            size="large"
+            disabled={bun && (!ingredients.length || !bun.length)}
+            extraClass="open-modal-button"
+          >
+            Оформить заказ
+          </Button>
       </div>
     </section>
   );

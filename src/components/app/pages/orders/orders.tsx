@@ -50,7 +50,7 @@ export default function Orders() {
   }
 
   if (isLoading) {
-    return <p className={styles.ws_status_message}>Загрузка...</p>;
+    return <p className={"text text_type_main-medium" + " " + styles.ws_status_message}>Загрузка...</p>;
   }
 
   const statusOrder = (order: IItemsResponseOrders) => {

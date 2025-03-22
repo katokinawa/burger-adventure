@@ -3,7 +3,7 @@ import styles from "./modal-overlay.module.css";
 
 export default function ModalOverlay({ handleClose, children }: TModal) {
   return (
-    <div onClick={handleClose} className={styles.modal_overlay}>
+    <div onClick={handleClose} className={styles.modal_overlay} data-testid="open-modal-overlay">
       {children}
     </div>
   );

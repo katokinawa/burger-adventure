@@ -22,10 +22,9 @@ export default function IngredientElement({
 
   const countIngredient = ingredients.filter((e: IItem) => e._id === item._id);
 
-  if(counterBuns && counterBuns.length) {
+  if (counterBuns && counterBuns.length) {
     countBuns = counterBuns.filter((e: IItem) => e._id === item._id);
   }
-
 
   // DND (drag and drop)
   const [, dragTarget] = useDrag({
@@ -38,8 +37,9 @@ export default function IngredientElement({
       onClick={() => {
         openModal(item, "ingredient");
       }}
-      className={styles.article}
+      className={styles.article + " " + "open-modal-button"}
       ref={dragTarget}
+      data-testid="ingredient"
     >
       {countIngredient.length > 0 && (
         <Counter

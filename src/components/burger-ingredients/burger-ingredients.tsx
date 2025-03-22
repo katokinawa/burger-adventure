@@ -108,7 +108,7 @@ export default function BurgerIngredients() {
         <p id="bun" ref={bunRef} className="text text_type_main-medium mb-6">
           Булки
         </p>
-        <div className={styles.ingredients_list}>
+        <div className={styles.ingredients_list} data-testid="ingredients-elements-block">
           {ingredients.map(
             (item: IItem) =>
               item.type === "bun" && (
@@ -128,7 +128,7 @@ export default function BurgerIngredients() {
         >
           Соусы
         </p>
-        <div className={styles.ingredients_list}>
+        <div className={styles.ingredients_list} data-testid="ingredients-elements-block">
           {ingredients.map(
             (item: IItem) =>
               item.type === "sauce" && (
@@ -144,7 +144,7 @@ export default function BurgerIngredients() {
         <p id="main" ref={mainRef} className="text text_type_main-medium mb-6">
           Начинки
         </p>
-        <div className={styles.ingredients_list}>
+        <div className={styles.ingredients_list} data-testid="ingredients-elements-block">
           {ingredients.map(
             (item: IItem) =>
               item.type === "main" && (

@@ -38,7 +38,7 @@ export interface IFormSubmitSuccess {
 }
 export interface IFormSubmitError {
   readonly type: typeof FORM_SUBMIT_ERROR;
-  errorStatusCode?: number;
+  errorStatusCode: number;
 }
 export interface IShowPasswordSwitch {
   readonly type: typeof SHOW_PASSWORD_SWITCH;
@@ -121,7 +121,7 @@ export const submitRegister =
         });
         document.cookie = `accessToken=${item.accessToken}; max-age=1200;`;
         document.cookie = `refreshToken=${item.refreshToken};`;
-        window.history.pushState(null, "", "/");
+        window.history.pushState(null, "", "burger-restaurant/#/");
         window.history.go(0);
       })
       .catch((errorStatusCode) => {
@@ -151,7 +151,7 @@ export const submitForgotPassword =
             item,
           });
           localStorage.setItem("forgot_password", "true");
-          window.history.pushState(null, "", "/reset-password");
+          window.history.pushState(null, "", "burger-restaurant/#/reset-password");
           window.history.go(0);
         })
         .catch((errorStatusCode) => {
@@ -180,7 +180,7 @@ export const submitResetPassword =
           type: FORM_SUBMIT_SUCCESS,
           item,
         });
-        window.history.pushState(null, "", "/login");
+        window.history.pushState(null, "", "burger-restaurant/#/login");
         window.history.go(0);
       })
       .catch((errorStatusCode) => {
@@ -210,7 +210,7 @@ export const submitLogout = (): AppThunk => (dispatch: AppDispatch) => {
       });
       document.cookie = "accessToken=;max-age=0";
       document.cookie = "refreshToken=;max-age=0";
-      window.history.pushState(null, "", "/login");
+      window.history.pushState(null, "", "burger-restaurant/#/login");
       window.history.go(0);
     })
     .catch((errorStatusCode) => {

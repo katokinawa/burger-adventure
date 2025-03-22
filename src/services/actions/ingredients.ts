@@ -29,18 +29,18 @@ export const getIngredients = () => (dispatch: AppDispatch) => {
     type: GET_INGREDIENTS_REQUEST,
   });
   request("ingredients", {})
-  .then((item) => {
-    if (item.data) {
-      dispatch({
-        type: GET_INGREDIENTS_SUCCESS,
-        items: item.data,
-      });
-    } else {
-      dispatch({
-        type: GET_INGREDIENTS_ERROR,
-      });
-    }
-  })
+    .then((item) => {
+      if (item.data) {
+        dispatch({
+          type: GET_INGREDIENTS_SUCCESS,
+          items: item.data,
+        });
+      } else {
+        dispatch({
+          type: GET_INGREDIENTS_ERROR,
+        });
+      }
+    })
     .catch(() => {
       dispatch({
         type: GET_INGREDIENTS_ERROR,

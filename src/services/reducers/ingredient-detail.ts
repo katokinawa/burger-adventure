@@ -26,7 +26,7 @@ type TIngredientDetailState = {
   OrderMessage: string;
 };
 
-const initialState: TIngredientDetailState = {
+export const initialState: TIngredientDetailState = {
   data: {},
   isModalOpen: false,
   ingredientType: "",

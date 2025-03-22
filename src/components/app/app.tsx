@@ -1,5 +1,5 @@
 import { AppHeader } from "../app-header/app-header";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import { Login } from "./pages/login/login";
 import { Home } from "../home/home";
 import styles from "./app.module.css";
@@ -18,7 +18,7 @@ import OrderCurrentModalHandler from "../order-current-modal-handler/order-curre
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AppHeader />
       <main className={styles.main}>
         <Routes>
@@ -63,6 +63,6 @@ export default function App() {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </main>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

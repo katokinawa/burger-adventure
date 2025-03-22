@@ -26,7 +26,7 @@ type TFormState = {
   formErrorStatusCode: number;
 };
 
-const initialState: TFormState = {
+export const initialState: TFormState = {
   form: {
     name: "",
     password: "",

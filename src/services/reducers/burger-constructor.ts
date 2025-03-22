@@ -13,7 +13,7 @@ type TBurgerConstructorState = {
   buns: IItem[];
 };
 
-const initialState: TBurgerConstructorState = {
+export const initialState: TBurgerConstructorState = {
   items: [],
   buns: [],
 };
@@ -48,7 +48,7 @@ export const burgerConstructor = (state = initialState, action: TBurgerConstruct
       return {
         ...state,
         items: [],
-        buns: undefined,
+        buns: [],
       };
     }
     default: {

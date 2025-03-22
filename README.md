@@ -11,3 +11,6 @@
 4. Перейдите в директорию проекта с помощью команды `cd <директория>`.
 5. Загрузите все зависимости с помощью команды `npm install`.
 6. Запустите проект с помощью команды `npm run preview`.
+
+[GitHub Pages](https://katokinawa.github.io/burger-restaurant/)
+
